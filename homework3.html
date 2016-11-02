@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<!--==================================================================
+//
+// Title:      Beverage Buzzards
+// Course:     CSC 5750
+// Homework:   3
+// Author:     Mohammed Mumen	
+// Date:       11/3/2016
+// Description:
+//   <brief description of web application including its inputs,
+// processing, and outputs>
+// 
+//=================================================================-->
+
+<head>
+  
+	<title>Beverage Buzzards</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="[name]"/>
+  <meta name="description" content="[application title]"/>
+  <meta http-equiv="Expires" content="-1">
+	<script type="text/javascript">
+
+		// Declare 10x6 array
+      var arr1 = new Array(10);  // Declare array with three spots
+      arr1[0] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[1] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[2] = new Array(6);  // Declare array with two spots and place inside arr1
+	  arr1[3] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[4] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[5] = new Array(6);  // Declare array with two spots and place inside arr1
+	  arr1[6] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[7] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[8] = new Array(6);  // Declare array with two spots and place inside arr1
+      arr1[9] = new Array(6);  // Declare array with two spots and place inside arr1
+	  
+	 
+		var subtotal;
+		var saleTax;
+		var totalPrice;
+		
+		var saleID;
+		var saleCount = 0;
+		var salePointer = 0;
+		
+		var type;
+		var size;
+		
+		var lightSmall = 2.00;
+		var lightMed = 2.80;
+		var lightLar = 3.60;
+			
+		var blendSmall = 2.50;
+		var blendMed = 3.00;
+		var blendLar = 3.20;
+			
+		var darkSmall = 2.75;
+		var darkMed = 2.00;
+		var darkLar = 2.00;
+		//==================================================
+		// Sale ID displpay
+		//==================================================
+		function newSaleId()
+		{
+			
+			saleID = parseInt(document.getElementById('saleid').value);
+			saleID = saleID + 1;
+			
+			document.getElementById('saleid').value = saleID;
+			document.getElementById('coffeesize').value = "";
+			document.getElementById('coffeetype').value = "";
+			document.getElementById('subtotal').value = "";
+			document.getElementById('saletax').value = "";
+			document.getElementById('saletotal').value = "";
+			
+			salePointer = count;
+			count = count + 1;
+			
+		
+			
+		}
+		function reset(){
+			
+			saleID = parseInt(document.getElementById('saleid').value);
+			var i = 0;
+			document.getElementById('coffeesize').value = "";
+			document.getElementById('coffeetype').value = "";
+			document.getElementById('subtotal').value = "";
+			document.getElementById('saletax').value = "";
+			document.getElementById('saletotal').value = "";
+		
+			while(i < 9){
+			
+				if(arr1[i][0] == saleID)
+				{
+					arr1[i][1] = undefined;
+					arr1[i][2] = undefined;
+					arr1[i][3] = undefined;
+					arr1[i][4] = undefined;
+					arr1[i][5] = undefined;
+				}
+				
+			
+				i = i +1;
+			}
+		
+		}
+		// calculating total function
+		function calcSales(){
+			
+			saleID = parseInt(document.getElementById('saleid').value);
+
+			type = document.getElementById('coffeetype').value;
+			size = document.getElementById('coffeesize').value;
+
+			if (type.valueOf() == "l" || type.valueOf() == "b" ||type.valueOf() == "d")
+			{
+			type = type;
+			}
+			else
+			{
+			window.alert("Error: " + type + " is an invalid Coffee type");
+
+			type = type;
+			}
+			
+			if (size.valueOf() == "s" || size.valueOf() == "m" ||size.valueOf() == "l")
+			{
+			size = size;
+
+			}
+			else
+			{
+			window.alert("Error: " + size + " is an invalid Coffee size");
+			size = size;
+			
+			}
+			
+			if(document.getElementById('coffeetype').value && (document.getElementById('coffeesize').value == "s")){
+				subtotal = lightSmall;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+			}
+			else if((document.getElementById('coffeetype').value == "b") && (document.getElementById('coffeesize').value == "s")){
+				subtotal = blendSmall;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value) == "d" && (document.getElementById('coffeesize').value == "s")){
+				subtotal = darkSmall;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value == "l") && (document.getElementById('coffeesize').value == "m")){
+				subtotal = lightMed;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value == "b") && (document.getElementById('coffeesize').value == "m")){
+				subtotal = blendMed;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value == "d") && (document.getElementById('coffeesize').value == "m")){
+				subtotal = darkMed;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value == "l") && (document.getElementById('coffeesize').value == "l")){
+				subtotal = lightLar;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value == "b") && (document.getElementById('coffeesize').value == "l")){
+				subtotal = blendLar;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}
+			else if((document.getElementById('coffeetype').value == "d") && (document.getElementById('coffeesize').value == "l")){
+				subtotal = darkLar;
+				saleTax = subtotal * 0.06;
+				totalPrice = subtotal + saleTax;
+				document.getElementById('subtotal').value = subtotal;
+				document.getElementById('saletax').value = saleTax;
+				document.getElementById('saletotal').value = totalPrice;
+				
+			}			
+			if (saleCount == 0){
+				saleCount = saleCount + 1;
+				
+			}
+			
+			
+			
+			salePointer = saleCount - 1;
+			arr1[salePointer][0] = saleID;
+			arr1[salePointer][1] = document.getElementById('coffeetype').value;
+			arr1[salePointer][2] = document.getElementById('coffeesize').value;
+			arr1[salePointer][3] = subtotal;
+			arr1[salePointer][4] = saleTax;
+			arr1[salePointer][5] = totalPrice;
+		}
+		
+	</script>
+  
+</head>
+ 
+<body>
+
+  <!-- comment -->
+  <table>
+<tr>
+<td></td>
+<td>l-light</td>
+<td>b-blend</td>
+<td>d-dark</td>
+</tr>
+<tr>
+<td>s-small</td>
+<td>$2.00</td>
+<td>$2.50</td>
+<td>$2.75</td>
+</tr>
+<tr>
+<td>m-medium</td>
+<td>$2.80</td>
+<td>$3.00</td>
+<td>$3.20</td>
+</tr>
+<tr>
+<td>l-large</td>
+<td>$3.60</td>
+<td>$3.85</td>
+<td>$4.00</td>
+</tr>
+</table>
+<br>
+<br>
+
+Sale ID: <input type="text" readonly id="saleid"  value = "1000"/>
+
+<br>
+<br>
+<form>
+Coffee type(single letter): <input type="text" id="coffeetype"/>
+
+<br>
+<br>
+
+Coffee size(single letter): <input type="text" id="coffeesize"/>
+
+<br>
+<br>
+
+<button type = "button" onclick="calcSales()">Calculate Total</button>
+
+<br>
+<br>
+
+Sale subtotal: <input type="text" readonly id="subtotal"/>
+
+<br>
+<br>
+
+Sale tax: <input type="text" readonly id="saletax"/>
+
+<br>
+<br>
+
+Sale total: <input type="text" readonly id="saletotal"/>
+
+<br>
+<br>
+
+<button type = "button" onclick="newSaleId()"> New Sales</button>
+<br>
+<button type = "button" onclick="previous()"> Previous Sales</button>
+<br>
+<button type="button"onclick="reset()">Reset</button>
+</form>
+</body>
+ 
+</html>
